@@ -1,0 +1,40 @@
+# Logs
+logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+lerna-debug.log*
+
+node_modules
+dist
+dist-ssr
+*.local
+
+# Editor directories and files
+.vscode/*
+!.vscode/extensions.json
+.idea
+.DS_Store
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
+
+# React 프론트
+node_modules/
+dist/
+
+# Python 백엔드
+venv/
+__pycache__/
+*.pyc
+
+# 환경변수, 캐시, 시스템 파일
+.env
+.DS_Store
+
+# VSCode 설정 (원한다면)
+.vscode/

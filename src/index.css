@@ -1,0 +1,12 @@
+#add_memos {
+    display: flex;
+    flex-direction: column;
+    margin: auto;
+    /* 수평, 수직 모두 자동 마진 */
+    width: 400px;
+    gap: 1rem;
+    max-width: 500px;
+    /* 화면 높이 100% */
+    justify-content: center;
+    /* 세로 중앙 정렬 */
+}
