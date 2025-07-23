@@ -1,12 +1,296 @@
-#add_memos {
+/* index.css */
+body,
+html {
+    margin: 0;
+    padding: 0;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #f5f7fa;
+    height: 100vh;
+    overflow: hidden;
+    background-color: #FFEFE3;
+}
+
+.app-container {
+    display: flex;
+    height: 100vh;
+    padding: 10px;
+    box-sizing: border-box;
+}
+
+.left-panel,
+.center-panel,
+.right-panel {
+    padding: 1rem;
+    background-color: #ffffff;
+    border-radius: 10px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
     display: flex;
     flex-direction: column;
-    margin: auto;
-    /* 수평, 수직 모두 자동 마진 */
-    width: 400px;
-    gap: 1rem;
-    max-width: 500px;
-    /* 화면 높이 100% */
+    gap: 0.5rem;
+
+}
+
+.left-panel {
+    flex: 1;
+    margin-right: 10px;
+}
+
+.center-panel {
+    flex: 2;
+    margin-right: 10px;
+}
+
+.right-panel {
+    flex: 3;
+}
+
+textarea {
+    width: 100%;
+    height: 100px;
+    resize: none;
+    padding: 0.5rem;
+    font-size: 1rem;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+}
+
+input[type="password"] {
+    padding: 0.5rem;
+    font-size: 1rem;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+button {
+    padding: 0.5rem;
+    border: none;
+    background-color: #4caf50;
+    color: white;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+button:hover {
+    background-color: #45a049;
+}
+
+.category-info {
+    background-color: #f0f0f0;
+    border-radius: 5px;
+    padding: 0.75rem;
+    margin-top: 1rem;
+    font-size: 0.9rem;
+    overflow: hidden;
+    line-height: 1.4;
+}
+
+h2,
+h3,
+h4 {
+    margin: 0.5rem 0;
+}
+
+.memo-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 8px 12px;
+    background-color: #fff;
+    border-radius: 8px;
+    margin-bottom: 8px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+.delete-button {
+    background: none;
+    border: none;
+    font-size: 1.2rem;
+    cursor: pointer;
+    color: #888;
+    transition: color 0.2s;
+}
+
+.delete-button:hover {
+    color: #e74c3c;
+}
+
+.memo-item span {
+    word-wrap: break-word;
+    /* 긴 단어도 줄바꿈 */
+    white-space: pre-wrap;
+    /* 공백과 줄바꿈을 유지하면서 줄바꿈 */
+    max-width: 300px;
+    /* 최대 너비 지정 (필요에 따라 조정) */
+    display: inline-block;
+}
+
+.modal-backdrop {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.3);
+    display: flex;
     justify-content: center;
-    /* 세로 중앙 정렬 */
+    align-items: center;
+    z-index: 9999;
+}
+
+.modal {
+    background: white;
+    padding: 20px;
+    border-radius: 8px;
+    min-width: 300px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.25);
+}
+
+.modal-buttons {
+    margin-top: 10px;
+    display: flex;
+    justify-content: flex-end;
+    gap: 10px;
+}
+
+/* 네비게이션 바 */
+.navbar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 60px;
+    background-color: #2c3e50;
+    color: #fff;
+    display: flex;
+    align-items: center;
+    padding: 0 20px;
+    font-size: 20px;
+    font-weight: bold;
+    z-index: 1000;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+.navbar-logo {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.app-container {
+    padding-top: 60px;
+    /* 네비바 높이만큼 여백 추가 */
+    display: flex;
+    flex-direction: row;
+}
+
+/* 🌙 다크모드: 기존 디자인 유지 + 색상만 변경 */
+.app-container.dark-mode {
+    background-color: #1e1e1e;
+    color: #e0e0e0;
+}
+
+.app-container.dark-mode .left-panel,
+.app-container.dark-mode .center-panel,
+.app-container.dark-mode .right-panel {
+    background-color: #2a2a2a;
+    color: #e0e0e0;
+    /* 기존 box-shadow는 유지 */
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.app-container.dark-mode textarea,
+.app-container.dark-mode input[type="password"] {
+    background-color: #333;
+    color: #fff;
+    border: 1px solid #555;
+}
+
+.app-container.dark-mode button {
+    background-color: #4caf50;
+    color: #fff;
+}
+
+.app-container.dark-mode button:hover {
+    background-color: #45a049;
+}
+
+.app-container.dark-mode .category-info {
+    background-color: #3a3a3a;
+    color: #ddd;
+}
+
+.app-container.dark-mode .memo-item {
+    background-color: #373737;
+    color: #fff;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+.app-container.dark-mode .delete-button {
+    color: #bbb;
+}
+
+.app-container.dark-mode .delete-button:hover {
+    color: #ff6b6b;
+}
+
+.app-container.dark-mode .modal {
+    background-color: #2c2c2c;
+    color: #fff;
+}
+
+.app-container.dark-mode .navbar {
+    background-color: #1f1f1f;
+    color: #fff;
+}
+
+.navbar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 60px;
+    background-color: #2c3e50;
+    color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    /* ← 추가 */
+    padding: 0 20px;
+    font-size: 20px;
+    font-weight: bold;
+    z-index: 1000;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+.right-panel {
+    flex: 3;
+    background-color: #ffffff;
+    border-radius: 10px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    overflow-y: auto;
+    /* ← 스크롤 가능하게 추가 */
+    max-height: calc(100vh - 80px);
+    /* 네비게이션바 여백 고려하여 높이 제한 */
+    padding: 1rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.left-panel {
+    flex: 1;
+    margin-right: 10px;
+    background-color: #ffffff;
+    border-radius: 10px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    padding: 1rem;
+    overflow-y: auto;
+    /* ← 세로 스크롤 가능 */
+    max-height: calc(100vh - 80px);
+    /* ← 전체 높이 제한 (네비게이션 바 고려) */
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
 }
